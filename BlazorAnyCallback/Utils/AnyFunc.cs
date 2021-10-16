@@ -36,9 +36,9 @@
             if (_callback is not null)
                 return _callback();
 
-            #pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
             return default;
-            #pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 
@@ -71,9 +71,9 @@
             if (_callback is not null)
                 return _callback(arg);
 
-            #pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8603 // Possible null reference return.
             return default;
-            #pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 
