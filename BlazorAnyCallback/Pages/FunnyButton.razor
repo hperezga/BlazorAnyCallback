@@ -1,0 +1,14 @@
+﻿@using OneOf
+<button class="btn btn-primary" @onclick="Clicked">@_template</button>
+
+@code {
+    [Parameter]
+    public AnyCallback<string> Callback { get; set; }
+
+    private string _template = "Click me!";
+
+    private async void Clicked()
+    {
+        _template = await Callback.InvokeAsync();
+    }
+}
