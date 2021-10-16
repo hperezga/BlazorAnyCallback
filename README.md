@@ -104,7 +104,7 @@ Found in **../BlazorAnyCallback/Utils/AnyFunc.cs** is a struct that wraps a sync
   
 ## Why the _new_ around my callback methods?
 
-I was hopping that I could convert the delegate functions directly to AnyFunc instances, but the C# compiler is smart, but not so smart to resolve the issue; so the only solution was to add constructors to the AnyFun struct and becase the compiler detects the type of the paramter a mere **new** will resolve the convertion. It is not the end of the world but I wanted to match the elegance of the EvenCallback delegates. Maybe next time!
+I was hopping that I could convert the delegate functions directly to AnyFunc instances, but the C# compiler is smart, but not so smart to resolve the issue; so the only solution was to add constructors to the AnyFun struct and becase the compiler detects the type of the parameter, **new** will resolve the convertion. It is not the end of the world but I wanted to match the elegance of the EvenCallback delegates. Maybe next time!
   
 
   
