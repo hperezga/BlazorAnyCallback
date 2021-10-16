@@ -2,8 +2,54 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hello, AnyFunc!</h1>
 
-Welcome to your new app.
+<div>
+    <FunnyButton GetTemplate=new(GetFunny) />
+</div>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div>
+    <FunnyButton GetTemplate=@new(GetFunny) />
+</div>
+
+<div>
+    <FunnyButton GetTemplate=new(GetFunnyAsync) />
+</div>
+
+<div>
+    <FunnyButton GetTemplate="new(GetFunny)" />
+</div>
+
+<div>
+    <FunnyButton />
+</div>
+
+<div>
+    <FunnyButton2 GetTemplate=new(GetFunnyTwo) />
+</div>
+
+<div>
+    <FunnyButton2 GetTemplate=new(GetFunnyTwoAsync) />
+</div>
+
+<div>
+    <FunnyButton2 GetTemplate=@new(n => $"Inline value is: {n}") />
+</div>
+
+@code {
+
+    private string GetFunny()
+    {
+        return $"Ok, funny call.";
+    }
+
+    private async Task<string> GetFunnyAsync()
+    {
+        return await Task.FromResult($"Ok, funny async call.");
+    }
+
+    private string GetFunnyTwo(int v) => $"Funny value = {v}";
+
+    private async Task<string> GetFunnyTwoAsync(int v) => await Task.FromResult($"Funny async value = {v}");
+}
+

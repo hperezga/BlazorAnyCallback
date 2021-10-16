@@ -6,8 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="OneOf" Version="3.0.201" />
-  </ItemGroup>
-
 </Project>

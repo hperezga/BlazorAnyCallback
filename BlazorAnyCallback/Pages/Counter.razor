@@ -1,5 +1,4 @@
 ﻿@page "/counter"
-@using OneOf
 
 <PageTitle>Counter</PageTitle>
 
@@ -8,20 +7,6 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button class="btn btn-primary" @onclick="AsyncIncrementCount">Click me</button>
-
-<div>
-    <FunnyButton Callback=new(GetFunnySync) />
-</div>
-
-<div>
-    <FunnyButton Callback=@new(GetFunnyAsync) />
-</div>
-
-<div>
-    <FunnyButton Callback="new(() => GetFunnySync())" />
-</div>
-
 
 @code {
     private int currentCount = 0;
@@ -30,12 +15,4 @@
     {
         currentCount++;
     }
-
-    private async Task AsyncIncrementCount()
-    {
-        await Task.Run(() => currentCount++);
-    }
-
-    private string GetFunnySync() => "Ok, funny call.";
-    private async Task<string> GetFunnyAsync() => await Task.FromResult("Ok, funny async call.");
 }
