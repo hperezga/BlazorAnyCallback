@@ -9,7 +9,42 @@ I personally like the EvenCallback events because they can take any callback met
 ## AnyFunc structure
 
 Found in **../BlazorAnyCallback/Utils/AnyFunc.cs** is a struct that wraps a sync or async callback function, providing a standard way to invoke the function and avoiding unnecessary async delegates when the payload is not the result of an async process. This struct can facilitate the process of hooking your callback events to sync or async methods.
-  
+```
+public struct AnyFunc<TResult>
+{
+    private readonly Func<TResult>? _callback;
+    private readonly Func<Task<TResult>>? _asyncCallback;
+
+    public AnyFunc(Func<TResult> callback)
+    {
+        _callback = callback;
+        _asyncCallback = null;
+    }
+
+    public AnyFunc(Func<Task<TResult>> callback)
+    {
+        _callback = null;
+        _asyncCallback = callback;
+    }
+
+    public static implicit operator AnyFunc<TResult>(Func<TResult> callback) => new(callback);
+
+    public static implicit operator AnyFunc<TResult>(Func<Task<TResult>> callback) => new(callback);
+
+    public async Task<TResult> InvokeAsync()
+    {
+        if (_asyncCallback is not null)
+            return await _asyncCallback();
+
+        if (_callback is not null)
+            return _callback();
+
+#pragma warning disable CS8603 // Possible null reference return.
+        return default;
+#pragma warning restore CS8603 // Possible null reference return.
+    }
+}
+ ```
 ## FunnyButton.razor - A sample component with a AnyFunc<string> callback parameter
   
 ```
